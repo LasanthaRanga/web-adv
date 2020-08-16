@@ -1,0 +1,5 @@
+[0705/080901.004:WARNING:minidump_to_upload_parameters.cc(36)] duplicate key guid, discarding value 9b0c6e4f-3b9e-4fe8-b3fd-e2fcc763f928
+[0705/080914.944:ERROR:minidumpwritedump_with_crashpad_info.cc(435)] Failed to call MiniDumpWriteDump: The paging file is too small for this operation to complete. (0x800705AF)
+[0705/080914.944:ERROR:minidumpwritedump_with_crashpad_info.cc(592)] Failed to write minidump file
+[0705/080914.944:ERROR:crash_report_exception_handler.cc(132)] TryMiniDumpWriteDumpWithCrashpadInfo failed
+[0705/080914.949:ERROR:process_info.cc(359)] UncheckedAllocate

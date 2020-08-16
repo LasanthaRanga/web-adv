@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-md-8 offset-md-2">
+            <br><br>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Upload Images</mat-card-title>
+                    <mat-card-subtitle>Fill details</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+
+                    <button mat-raised-button (click)="fileInput.click()">
+                        Select Image
+                    </button>
+                    <input style="display: none;" type="file" (change)="fileChangeEvent($event)" #fileInput />
+
+
+                    <br>
+
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                        [aspectRatio]="4 / 3" [resizeToWidth]="512" format="png" (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()">
+                    </image-cropper>
+                    <br>
+
+                    <button (click)="upload()" *ngIf="croppedImage  && !isLoading" mat-raised-button> UPLOAD </button>
+
+                    <div class="col-md-4 offset-md-4" *ngIf="isLoading">
+                        <mat-progress-spinner ng-show="isLoading" value='{{upProgrus}}'></mat-progress-spinner>
+                    </div>
+
+
+
+                </mat-card-content>
+
+
+            </mat-card>
+        </div>
+
+        <!-- <div class="row" *ngIf="imageObject.length>0"> -->
+        <ng-image-slider class="col-md-12" [images]="imageObject" [imageSize]="{width: w, height: h, space: 4}" #nav>
+        </ng-image-slider>
+        <!-- </div> -->
+
+        <!--  -->
+
+        <button mat-raised-button color="primary" [routerLink]="['/home']"> Done </button>
+
+    </div>
+</div>

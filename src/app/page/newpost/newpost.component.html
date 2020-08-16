@@ -1,0 +1,199 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-md-8 offset-md-2">
+            <br>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Create New</mat-card-title>
+                    <mat-card-subtitle>Fill details</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+
+                    <div class="row">
+                        <mat-form-field class="col-md-6">
+                            <mat-label>Distric</mat-label>
+                            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" required>
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+                                (optionSelected)="selectedUserChange($event.option.value)">
+                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                    {{option.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <mat-form-field class="col-md-6">
+                            <mat-label>City Or Vilage</mat-label>
+                            <input type="text" matInput [formControl]="myCityControl" [matAutocomplete]="autoCity"
+                                required>
+                            <mat-autocomplete #autoCity="matAutocomplete" [displayWith]="displayFnCity"
+                                (optionSelected)="selectedCityChange($event.option.value)">
+                                <mat-option *ngFor="let option of filteredcitys | async" [value]="option">
+                                    {{option.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="row">
+
+                        <mat-form-field class="col-md-6">
+                            <mat-label>Category</mat-label>
+                            <mat-select [(ngModel)]="cat1" (ngModelChange)="change0()">
+                                <mat-option *ngFor="let cat of catArray" [value]="cat">
+                                    {{cat.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+
+                        <mat-form-field *ngIf="cat1Array" class="col-md-6">
+                            <mat-label>{{cat1.name}}</mat-label>
+                            <mat-select [(ngModel)]="cat2" (ngModelChange)="change1()">
+                                <mat-option *ngFor="let c of cat1Array" [value]="c">
+                                    {{c.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                        <mat-form-field *ngIf="cat2Array" class="col-md-6">
+                            <mat-label>{{cat2.name}}</mat-label>
+                            <mat-select [(ngModel)]="cat3" (ngModelChange)="change2()">
+                                <mat-option *ngFor="let c of cat2Array" [value]="c">
+                                    {{c.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                        <mat-form-field *ngIf="cat3Array" class="col-md-6">
+                            <mat-label>{{cat3.name}}</mat-label>
+                            <mat-select [(ngModel)]="cat4" (ngModelChange)="change3()">
+                                <mat-option *ngFor="let c of cat3Array" [value]="c">
+                                    {{c.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                        <mat-form-field *ngIf="cat4Array" class="col-md-6">
+                            <mat-label>{{cat4.name}}</mat-label>
+                            <mat-select [(ngModel)]="cat5" (ngModelChange)="change4()">
+                                <mat-option *ngFor="let c of cat4Array" [value]="c">
+                                    {{c.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                        <mat-form-field *ngIf="cat5Array" class="col-md-6">
+                            <mat-label>{{cat5.name}}</mat-label>
+                            <mat-select [(ngModel)]="cat6" (ngModelChange)="change5()">
+                                <mat-option *ngFor="let c of cat5Array" [value]="c">
+                                    {{c.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+
+                    <div class="row">
+                        <mat-form-field class="col-md-6">
+                            <mat-label>Company Name : </mat-label>
+                            <input [(ngModel)]="company" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-6">
+                            <mat-label>Owner Name : </mat-label>
+                            <input [(ngModel)]="owner" matInput type="text" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Address Line 1 : </mat-label>
+                            <input [(ngModel)]="adl1" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Address Line 2 : </mat-label>
+                            <input [(ngModel)]="adl2" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Address Line 3 : </mat-label>
+                            <input [(ngModel)]="adl3" matInput type="text" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field class="col-md-12">
+                            <mat-label>Description : </mat-label>
+                            <textarea rows="5" [(ngModel)]="des" matInput type="text" placeholder="Customer Name" ></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field class="col-md-6">
+                            <mat-label>ව්‍යාපාරයේ නම : </mat-label>
+                            <input [(ngModel)]="companyS" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-6">
+                            <mat-label>හිමිකරුගේ නම : </mat-label>
+                            <input [(ngModel)]="ownerS" matInput type="text" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field class="col-md-12">
+                            <mat-label>විස්තරය : </mat-label>
+                            <textarea rows="5" [(ngModel)]="desS" matInput type="text" placeholder="Customer Name" ></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Phone No: </mat-label>
+                            <input [(ngModel)]="phone" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Mobile No: </mat-label>
+                            <input [(ngModel)]="mobile" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-4">
+                            <mat-label>IMO Viber Whatsapp No: </mat-label>
+                            <input [(ngModel)]="imo" matInput type="text" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Face Book Link: </mat-label>
+                            <input [(ngModel)]="fb" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Youtube Link: </mat-label>
+                            <input [(ngModel)]="yt" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Web Site Link: </mat-label>
+                            <input [(ngModel)]="web" matInput type="text" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-12">
+                        <button mat-stroked-button color="primary" class="btn-block" (click)="saveData()">Save</button>
+                    </div>
+
+                </mat-card-content>
+
+
+            </mat-card>
+        </div>
+    </div>
+</div>

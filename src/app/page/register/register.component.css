@@ -1,0 +1,23 @@
+body {
+    /* background-color: rgb(63, 81, 181); */
+}
+.signup {
+    /* background-color: rgb(63, 81, 181); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+.cc {
+    display: table;
+    height: 100%;
+    position: absolute;
+    /* overflow: hidden; */
+    width: 100%;
+}
+.helper {
+    /* position: absolute;
+    top: 50%; */
+    display: table-cell;
+    vertical-align: middle;
+}
+

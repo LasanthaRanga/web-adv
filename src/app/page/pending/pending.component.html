@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let ad of pendingList">
+            <br>
+            <mat-card [routerLink]="['/select',ad.idadv]">
+                <img mat-card-image [src]="ad.details_other" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <h4>{{ad?.company_name}}</h4>     
+                    <!-- <p>{{ad?.description}}</p> -->
+                </mat-card-content>              
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="cc">
+  <div class="helper">
+    <div class="col-md-4 offset-md-4">
+      <mat-card class="main-div">
+        <mat-card-header>
+          <mat-card-title>Sign Up</mat-card-title>
+          <mat-card-subtitle>Fill The form and register with us</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Full Name" required minlength="3" [(ngModel)]="fname">
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Email" type="email" required [(ngModel)]="email">
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Mobile" maxlength="10" minlength="10" type="number" required [(ngModel)]="mobile">
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="pword" minlength="3" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <input matInput placeholder="Address" required minlength="4" [(ngModel)]="address">
+          </mat-form-field>
+
+
+          <mat-form-field class="col-12">
+            <mat-label>Distric</mat-label>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" required>
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+              (optionSelected)="selectedUserChange($event.option.value)">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <mat-form-field class="col-12">
+            <mat-label>City Or Vilage</mat-label>
+            <input type="text" matInput [formControl]="myCityControl" [matAutocomplete]="autoCity" required>
+            <mat-autocomplete #autoCity="matAutocomplete" [displayWith]="displayFnCity"
+              (optionSelected)="selectedCityChange($event.option.value)">
+              <mat-option *ngFor="let option of filteredcitys | async" [value]="option">
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <div class="col-12">
+            <button class="btn-block" mat-stroked-button  color="primary" (click)="signup()">Sign Up</button>
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

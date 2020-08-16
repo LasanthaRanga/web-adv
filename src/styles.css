@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+html {
+    background-color: black;
+}
+.bb {
+    width: 100px !important;
+    min-width: unset !important;
+}
+
+.spin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+mat-spinner {
+    width: 24px;
+    height: 24px;
+    stroke: #444;
+    fill: #222;
+}

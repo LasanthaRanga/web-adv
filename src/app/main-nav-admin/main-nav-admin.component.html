@@ -1,0 +1,107 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
+
+    <img width="190px;" src="../../assets/images/logo.png">
+
+    <!-- <mat-toolbar>Menu</mat-toolbar> -->
+
+    <mat-nav-list>
+      <span *ngFor="let link of links">
+        <!-- <a mat-list-item [routerLink]="[link.url]">{{link.title}}</a> -->
+
+        <a color="primary" mat-list-item routerLink={{link.url}}>
+          <mat-icon color="primary">{{link.icon}}</mat-icon>{{link.title}}
+        </a>
+      </span>
+
+      <div style="padding-left: 10px;">
+
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <mat-select [(ngModel)]="cat1" (ngModelChange)="change0()">
+            <mat-option *ngFor="let cat of catArray" [value]="cat">
+              {{cat.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field *ngIf="cat1Array">
+          <mat-label>{{cat1.name}}</mat-label>
+          <mat-select [(ngModel)]="cat2" (ngModelChange)="change1()">
+            <mat-option *ngFor="let c of cat1Array" [value]="c">
+              {{c.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field *ngIf="cat2Array">
+          <mat-label>{{cat2.name}}</mat-label>
+          <mat-select [(ngModel)]="cat3" (ngModelChange)="change2()">
+            <mat-option *ngFor="let c of cat2Array" [value]="c">
+              {{c.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field *ngIf="cat3Array">
+          <mat-label>{{cat3.name}}</mat-label>
+          <mat-select [(ngModel)]="cat4" (ngModelChange)="change3()">
+            <mat-option *ngFor="let c of cat3Array" [value]="c">
+              {{c.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field *ngIf="cat4Array">
+          <mat-label>{{cat4.name}}</mat-label>
+          <mat-select [(ngModel)]="cat5" (ngModelChange)="change4()">
+            <mat-option *ngFor="let c of cat4Array" [value]="c">
+              {{c.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field *ngIf="cat5Array">
+          <mat-label>{{cat5.name}}</mat-label>
+          <mat-select [(ngModel)]="cat6" (ngModelChange)="change5()">
+            <mat-option *ngFor="let c of cat5Array" [value]="c">
+              {{c.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- <a mat-list-item [routerLink]="['/newpost']">New Post</a>
+      <a mat-list-item [routerLink]="['/pending']">Pending</a> -->
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <!-- *ngIf="isHandset$ | async" -->
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Booking</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/login']">
+          <mat-icon>login</mat-icon>
+          <span>Login</span>
+        </button>
+        <button mat-menu-item [routerLink]="['/register']">
+          <mat-icon>how_to_reg</mat-icon>
+          <span>Register</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
