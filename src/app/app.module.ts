@@ -22,6 +22,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 
@@ -41,6 +43,7 @@ import { SelectComponent } from './page/select/select.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { SliderModule } from 'angular-image-slider';
 import { MainNavAdminComponent } from './main-nav-admin/main-nav-admin.component';
+import { HomecatComponent } from './page/homecat/homecat.component';
 
 export function tokenGet() {
   return localStorage.getItem('secret');
@@ -61,7 +64,8 @@ export function tokenGet() {
     UploadComponent,
     PendingComponent,
     SelectComponent,
-    MainNavAdminComponent
+    MainNavAdminComponent,
+    HomecatComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,7 @@ export function tokenGet() {
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+    MatCarouselModule.forRoot(),
     
 
     ImageCropperModule,
@@ -98,7 +102,7 @@ export function tokenGet() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGet,
-        allowedDomains: ['localhost:3000'],
+        allowedDomains: ['https://apiadv.codetechasia.com/'],
         disallowedRoutes: ['http://example.com/examplebadroute/'],
       },
     }),

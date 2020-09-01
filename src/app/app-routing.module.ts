@@ -11,8 +11,10 @@ import { ProfileComponent } from './page/profile/profile.component';
 import { UploadComponent } from './page/upload/upload.component';
 import { PendingComponent } from './page/pending/pending.component';
 import { SelectComponent } from './page/select/select.component';
+import { HomecatComponent } from './page/homecat/homecat.component';
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'homecat', component: HomecatComponent },
   { path: 'home', component: HomeComponent },
   { path: 'home/:id', component: HomeComponent },
   { path: 'login', component: LoginComponent },

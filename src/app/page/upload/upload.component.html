@@ -17,9 +17,9 @@
 
 
                     <br>
-
+                    <!--  -->
                     <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
-                        [aspectRatio]="4 / 3" [resizeToWidth]="512" format="png" (imageCropped)="imageCropped($event)"
+                        [aspectRatio]="4 / 3" [resizeToWidth]="450"  format="png" (imageCropped)="imageCropped($event)"
                         (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()">
                     </image-cropper>
                     <br>
@@ -36,16 +36,23 @@
 
 
             </mat-card>
+
+            <mat-card>
+                <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="100%"
+                    proportion="75" slides="1" [loop]="true" [hideArrows]="false" [hideIndicators]="false"
+                    [useKeyboard]="true" [useMouseWheel]="false" orientation="ltr">
+                    <mat-carousel-slide #matCarouselSlide *ngFor="let item of imageArray" overlayColor="#FAFAFA"
+                        [hideOverlay]="false">
+                        <img [src]="item" width="100%">
+                    </mat-carousel-slide>
+                </mat-carousel>
+            </mat-card>
+
         </div>
 
-        <!-- <div class="row" *ngIf="imageObject.length>0"> -->
-        <ng-image-slider class="col-md-12" [images]="imageObject" [imageSize]="{width: w, height: h, space: 4}" #nav>
-        </ng-image-slider>
-        <!-- </div> -->
 
-        <!--  -->
-
-        <button mat-raised-button color="primary" [routerLink]="['/home']"> Done </button>
+       
 
     </div>
+    <button mat-raised-button color="primary" [routerLink]="['/home']"> Done </button>
 </div>

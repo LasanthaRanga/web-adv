@@ -19,7 +19,7 @@ export class UploadComponent implements OnInit {
   assignid = '';
   selectedFile: File = null;
   urlAttach = environment.apiUrl + 'addUp/';
-  imageUrl = environment.imagePath;
+  // imageUrl = environment.imagePath;
   upProgrus = 0;
   isLoading = false;
   comment = '';
@@ -37,6 +37,7 @@ export class UploadComponent implements OnInit {
   uploadBlob;
 
   imageObject: Array<object> = [];
+  imageArray = []
 
   constructor(
     private aroute: ActivatedRoute,
@@ -178,10 +179,8 @@ export class UploadComponent implements OnInit {
           reader.addEventListener('loadend', (e) => {
             const result = (<any>e.srcElement).result;
             const url = this.sanitizer.bypassSecurityTrustUrl(result);
-            this.imageObject.push({
-              image: result,
-              thumbImage: result,
-            });
+
+            this.imageArray.push(result);
 
             console.log(this.imageObject);
 

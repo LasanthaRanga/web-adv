@@ -18,6 +18,13 @@ export class HomeComponent implements OnInit {
   id;
   isLoading = false;
   cats = [];
+
+  imageArray = [
+    { title: 'Ela Kiri', url: 'https://www.designyourway.net/blog/wp-content/uploads/2018/02/4k-Game-Wallpaper-ultra-high-definition-game-wallpaper-1200x675.jpg' },
+    { title: 'dweasdf', url: 'https://www.designyourway.net/blog/wp-content/uploads/2018/02/4k-landscape-background-As-Wallpaper-HD-768x432.jpg' }
+  ];
+
+
   constructor(
     private sanitizer: DomSanitizer,
     private apiCall: ApicallService,
@@ -53,10 +60,11 @@ export class HomeComponent implements OnInit {
       this.apiCall.call(this.urlCat + 'getAddsByCats', { list: data.ids }, dd => {
         console.log(dd);
         this.pendingList = dd;
-        
+
         this.loadAttach();
         this.isLoading = false;
       });
+      this.isLoading = false;
     });
   }
 

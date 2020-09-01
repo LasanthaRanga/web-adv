@@ -17,13 +17,15 @@ html {
 }
 
 .spin {
+    width: 24px;
+    height: 24px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-mat-spinner {
+.mat-spinner {
     width: 24px;
     height: 24px;
     stroke: #444;

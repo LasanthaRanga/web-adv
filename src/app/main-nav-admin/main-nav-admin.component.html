@@ -3,7 +3,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
 
-    <img width="190px;" src="../../assets/images/logo.png">
+    <img width="201px;" src="../../assets/images/logo.png">
 
     <!-- <mat-toolbar>Menu</mat-toolbar> -->
 
@@ -102,6 +102,9 @@
       </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->
+
     <router-outlet></router-outlet>
+
+
   </mat-sidenav-content>
 </mat-sidenav-container>

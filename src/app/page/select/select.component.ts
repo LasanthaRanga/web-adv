@@ -5,6 +5,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/services/apicall.service';
 import { DatePipe } from '@angular/common';
+
+
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
@@ -17,24 +19,18 @@ export class SelectComponent implements OnInit {
 
   urlAttach = environment.apiUrl + 'addUp/';
   urlAdv = environment.apiUrl + 'add/';
-  imageUrl = environment.imagePath;
+  // imageUrl = environment.imagePath;
   images;
   id;
   adv;
   priority;
   day;
 
+
   user; uid;
-  imageObject: Array<object> = [
 
-    // , {
-    //   image: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Support base64 image
-    //   thumbImage: 'https://material.angular.io/assets/img/examples/shiba2.jpg', // Support base64 image
-    //   title: 'Image title', // Optional: You can use this key if want to show image with title
-    //   alt: 'Image alt' // Optional: You can use this key if want to show image with alt
-    // }
 
-  ];
+  imageArray = [];
 
   w = 500;
   h = 300;
@@ -89,15 +85,7 @@ export class SelectComponent implements OnInit {
     this.http.get(this.urlAttach + 'getUploadList/' + this.id).subscribe(data => {
       this.images = data;
       console.log(this.images);
-      this.images.forEach(i => {
-        this.imageObject.push({
-          image: this.imageUrl + i.image_path,
-          thumbImage: this.imageUrl + i.image_path,
-          // alt: 'alt of image',
-          // title: 'title of image'
 
-        });
-      });
     });
   }
 
@@ -113,10 +101,9 @@ export class SelectComponent implements OnInit {
           reader.addEventListener('loadend', (e) => {
             const result = (<any>e.srcElement).result;
             const url = this.sanitizer.bypassSecurityTrustUrl(result);
-            this.imageObject.push({
-              image: result,
-              thumbImage: result,
-            });
+
+            this.imageArray.push(result);
+
           });
           reader.readAsDataURL(blob);
         });

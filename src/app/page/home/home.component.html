@@ -1,22 +1,41 @@
+<mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="100%" proportion="30"
+    slides="5" [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true" [useMouseWheel]="false"
+    orientation="ltr">
+    <mat-carousel-slide #matCarouselSlide *ngFor="let item of imageArray" overlayColor="#FAFAFA" [hideOverlay]="false">
+        <img [src]="item.url" width="100%">
+    </mat-carousel-slide>
+</mat-carousel>
+
 <div class="container">
     <div class="spin" *ngIf="isLoading">
         <mat-spinner color="tertiary"></mat-spinner>
-      </div>
-    <div class="row">
-        <div class="col-md-4" *ngFor="let ad of pendingList">
+    </div>
+
+
+
+
+
+
+
+    <div class="row   justify-content-center">
+        <div class="col-md-8 col-md-auto" *ngFor="let ad of pendingList">
             <br>
-            <mat-card [routerLink]="['/select',ad.idadv]" >
-                <img mat-card-image [src]="ad.details_other" alt="Photo of a Shiba Inu">
-                <!-- <mat-card-header>
-                    <mat-card-title>{{ad?.name}}</mat-card-title>
-                    <mat-card-subtitle>{{ad?.company_name}}</mat-card-subtitle>
-                </mat-card-header> -->
-                <mat-card-content>
-                    <h6>{{ad?.name}}</h6>     
-                    <p>{{ad?.company_name}}</p>     
-                    <!-- <p>{{ad?.description}}</p> -->
-                </mat-card-content>             
+            <mat-card [routerLink]="['/select',ad.idadv]">
+                <div class="row">
+                    <div style="padding-top: 25px; padding-left: 40px; padding-right: 40px;" class="col-md-4">
+                        <img mat-card-image [src]="ad.details_other">
+                    </div>
+                    <div class="col-md-8">
+                        <div>
+                            <h6>{{ad?.name}}</h6>
+                            <p>{{ad?.company_name}} <br> {{ad?.company_name_sinhala}} </p>
+
+                        </div>
+                    </div>
+                </div>
             </mat-card>
         </div>
     </div>
+
+
 </div>
