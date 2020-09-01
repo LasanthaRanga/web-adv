@@ -40,7 +40,7 @@ import { ProfileComponent } from './page/profile/profile.component';
 import { UploadComponent } from './page/upload/upload.component';
 import { PendingComponent } from './page/pending/pending.component';
 import { SelectComponent } from './page/select/select.component';
-import { NgImageSliderModule } from 'ng-image-slider';
+// import { NgImageSliderModule } from 'ng-image-slider';
 import { SliderModule } from 'angular-image-slider';
 import { MainNavAdminComponent } from './main-nav-admin/main-nav-admin.component';
 import { HomecatComponent } from './page/homecat/homecat.component';
@@ -97,7 +97,7 @@ export function tokenGet() {
 
     FormsModule,
     ReactiveFormsModule,
-    NgImageSliderModule,
+    // NgImageSliderModule,
     SliderModule,
     JwtModule.forRoot({
       config: {

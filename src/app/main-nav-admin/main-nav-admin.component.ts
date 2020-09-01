@@ -51,13 +51,18 @@ export class MainNavAdminComponent {
       title: 'Pending',
       url: '/pending',
       icon: 'hourglass_top'
-    }
+    },
+    {
+      title: 'Home',
+      url: '/homecat',
+      icon: 'home'
+    },
   ];
 
   notLogin = [
     {
       title: 'Home',
-      url: '/home',
+      url: '/homecat',
       icon: 'home'
     },
     {

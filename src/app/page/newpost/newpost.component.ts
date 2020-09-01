@@ -79,7 +79,7 @@ export class NewpostComponent implements OnInit {
   constructor(private apicall: ApicallService, private router: Router) {
 
     this.apicall.call(this.urlUser + 'getDistric', {}, data => {
-      let ar = [];
+      const ar = [];
       data.forEach(el => {
         ar.push({ id: el.iddistric, name: el.distric_english });
       });
@@ -142,7 +142,7 @@ export class NewpostComponent implements OnInit {
     console.log(value);
 
     this.selectedUser = value.id;
-    let ar = [];
+    const ar = [];
     this.apicall.call(this.urlUser + 'getCitys', value, data => {
       console.log(data);
       data.forEach(el => {

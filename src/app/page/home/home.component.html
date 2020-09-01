@@ -1,23 +1,59 @@
-<mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="100%" proportion="30"
-    slides="5" [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true" [useMouseWheel]="false"
-    orientation="ltr">
-    <mat-carousel-slide #matCarouselSlide *ngFor="let item of imageArray" overlayColor="#FAFAFA" [hideOverlay]="false">
-        <img [src]="item.url" width="100%">
-    </mat-carousel-slide>
-</mat-carousel>
-
 <div class="container">
     <div class="spin" *ngIf="isLoading">
         <mat-spinner color="tertiary"></mat-spinner>
     </div>
 
 
+    <div class="row   justify-content-center">
+        <div class="col-md-8 col-md-auto">
 
+            <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="100%"
+                proportion="60" slides="5" [loop]="true" [hideArrows]="false" [hideIndicators]="true"
+                [useKeyboard]="true" [useMouseWheel]="false" orientation="ltr">
+                <mat-carousel-slide #matCarouselSlide *ngFor="let item of imageArray" overlayColor="#FAFAFA"
+                    [hideOverlay]="false">
+                    
+                    <mat-card>
+                        <img [src]="item.url" width="100%">
+                        
+                    </mat-card>
+                </mat-carousel-slide>
+            </mat-carousel>
 
-
+        </div>
+    </div>
 
 
     <div class="row   justify-content-center">
+
+        <div class="col-md-8 col-md-auto">
+            <br>
+            <mat-card>
+
+                <mat-form-field class="col-md-6">
+                    <mat-label>District</mat-label>
+                    <mat-select [(ngModel)]="selectedDis" (ngModelChange)="disChange()">
+                        <mat-option *ngFor="let dis of districs" [value]="dis">
+                            {{dis.distric_english}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6">
+                    <mat-label>City</mat-label>
+                    <mat-select [(ngModel)]="selectedCity" (ngModelChange)="cityChange()">
+                        <mat-option *ngFor="let cit of cityArray" [value]="cit">
+                            {{cit?.city_english}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </mat-card>
+        </div>
+
+    </div>
+    <div class="row   justify-content-center">
+
         <div class="col-md-8 col-md-auto" *ngFor="let ad of pendingList">
             <br>
             <mat-card [routerLink]="['/select',ad.idadv]">

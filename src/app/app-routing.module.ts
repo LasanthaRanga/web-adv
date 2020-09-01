@@ -13,7 +13,7 @@ import { PendingComponent } from './page/pending/pending.component';
 import { SelectComponent } from './page/select/select.component';
 import { HomecatComponent } from './page/homecat/homecat.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/homecat', pathMatch: 'full' },
   { path: 'homecat', component: HomecatComponent },
   { path: 'home', component: HomeComponent },
   { path: 'home/:id', component: HomeComponent },

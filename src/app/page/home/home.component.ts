@@ -14,10 +14,17 @@ export class HomeComponent implements OnInit {
   urlAttach = environment.apiUrl + 'addUp/';
   urlAdv = environment.apiUrl + 'add/';
   urlCat = environment.apiUrl + 'cat/';
+  urlUser = environment.apiUrl + 'users/';
+
   pendingList = [];
   id;
   isLoading = false;
   cats = [];
+  districs = [];
+  selectedDis;
+  cityArray = [];
+  selectedCity;
+
 
   imageArray = [
     { title: 'Ela Kiri', url: 'https://www.designyourway.net/blog/wp-content/uploads/2018/02/4k-Game-Wallpaper-ultra-high-definition-game-wallpaper-1200x675.jpg' },
@@ -42,6 +49,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getDistict();
     this.isLoading = true;
     this.id = this.aRoute.snapshot.paramMap.get('id');
     if (this.id) {
@@ -56,14 +64,38 @@ export class HomeComponent implements OnInit {
   getSubCats() {
     this.pendingList = [];
     this.apiCall.call(this.urlCat + 'getAllSubCats', { id: this.id }, data => {
-      console.log(data.ids);
-      this.apiCall.call(this.urlCat + 'getAddsByCats', { list: data.ids }, dd => {
-        console.log(dd);
-        this.pendingList = dd;
+      // console.log(data.ids);
 
-        this.loadAttach();
-        this.isLoading = false;
-      });
+      if (this.selectedCity && this.selectedCity.idcity > 0) {
+        this.apiCall.call(this.urlCat + 'getAddsByCatsAndCity', { list: data.ids, id: this.selectedCity.idcity }, dd => {
+          // console.log(dd);
+          this.pendingList = dd;
+
+          this.loadAttach();
+          this.isLoading = false;
+        });
+
+      } else if (this.selectedDis && this.selectedDis.iddistric > 0) {
+
+        this.apiCall.call(this.urlCat + 'getAddsByCatsAndDis', { list: data.ids, id: this.selectedDis.iddistric }, dd => {
+          // console.log(dd);
+          this.pendingList = dd;
+
+          this.loadAttach();
+          this.isLoading = false;
+        });
+
+      } else {
+        this.apiCall.call(this.urlCat + 'getAddsByCats', { list: data.ids }, dd => {
+          //   console.log(dd);
+          this.pendingList = dd;
+
+          this.loadAttach();
+          this.isLoading = false;
+        });
+      }
+
+
       this.isLoading = false;
     });
   }
@@ -77,6 +109,8 @@ export class HomeComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
+
 
   loadAttach() {
 
@@ -94,4 +128,29 @@ export class HomeComponent implements OnInit {
 
     console.log(this.pendingList);
   }
+
+  getDistict() {
+    this.apiCall.call(this.urlUser + 'getDistric', {}, data => {
+      this.districs = data;
+    });
+  }
+
+  disChange() {
+    this.selectedCity = null;
+    this.apiCall.call(this.urlUser + 'getCitys', { id: this.selectedDis.iddistric }, data => {
+      this.cityArray = data;
+      console.log(this.cityArray);
+      this.getSubCats();
+    });
+  }
+
+
+
+  cityChange() {
+    console.log(this.selectedCity);
+    this.getSubCats();
+  }
+
+
+
 }

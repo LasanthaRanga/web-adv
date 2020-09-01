@@ -3,11 +3,8 @@
     <div class="row">
         <div class="col-md-3" *ngFor="let cat of maincats">
             <mat-card [routerLink]="['/home',cat.id]">
-                <img src="../../assets/images/cat/{{cat.imagePath}}" style="width: 100%;">
-                <mat-card-title>
-                    {{cat.name}}
-                </mat-card-title>
-
+                <img [src]="cat.description" style="width: 100%;">
+                {{cat.name}}
             </mat-card>
             <br>
         </div>
