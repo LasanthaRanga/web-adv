@@ -151,11 +151,18 @@ export class UploadComponent implements OnInit {
               this.isLoading = false;
               this.croppedImage = null;
               this.imageChangedEvent = null;
-              this.loadAttach();
+
+
+
             }
           } else if (events.type === HttpEventType.Response) {
             console.log('upload completed image path is');
             console.log(events.body);
+            this.upProgrus = 0.0;
+            setTimeout(() => {
+              this.loadAttach();
+            }, 10);
+
           }
         });
       });
@@ -170,6 +177,7 @@ export class UploadComponent implements OnInit {
     this.http.get(this.urlAttach + 'getUploadList/' + this.id).subscribe(data => {
       // console.log(data);
       const array = JSON.parse(JSON.stringify(data));
+      this.imageArray = [];
       for (let i = 0; i < array.length; i++) {
         this.http.get(this.urlAttach + array[i].image_path, {
           responseType: 'blob'

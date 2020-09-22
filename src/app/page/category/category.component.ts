@@ -175,9 +175,17 @@ export class CategoryComponent implements OnInit {
       };
     }
 
-    this.apicall.call(this.urlCat + 'addCat', obj, data => {
-      console.log(data);
-    });
+    if (this.ename) {
+      this.apicall.call(this.urlCat + 'addCat', obj, data => {
+        this.sname = null;
+        this.ename = null;
+        this.change0();
+        this.apicall.call(this.urlCat + 'getAll', {}, dataa => {
+          console.log(dataa);
+          this.catArray = dataa;
+        });
+      });
+    }
   }
 
 

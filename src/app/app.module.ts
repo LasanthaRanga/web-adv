@@ -23,7 +23,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 
@@ -41,9 +41,13 @@ import { UploadComponent } from './page/upload/upload.component';
 import { PendingComponent } from './page/pending/pending.component';
 import { SelectComponent } from './page/select/select.component';
 // import { NgImageSliderModule } from 'ng-image-slider';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
+
 import { SliderModule } from 'angular-image-slider';
 import { MainNavAdminComponent } from './main-nav-admin/main-nav-admin.component';
 import { HomecatComponent } from './page/homecat/homecat.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 export function tokenGet() {
   return localStorage.getItem('secret');
@@ -65,7 +69,8 @@ export function tokenGet() {
     PendingComponent,
     SelectComponent,
     MainNavAdminComponent,
-    HomecatComponent
+    HomecatComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -88,8 +93,9 @@ export function tokenGet() {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCarouselModule.forRoot(),
-    
+    MatProgressBarModule,
 
+    NgxMatSelectSearchModule,
     ImageCropperModule,
 
     HttpClientModule,

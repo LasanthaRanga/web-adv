@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
         console.log(localStorage.getItem('user'));
         this.mg.message('success', 'Login Successful');
    
-        window.location.href = '/home';
+        window.location.href = '/';
         
       }
 

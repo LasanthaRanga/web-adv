@@ -1,9 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/services/apicall.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { BehaviorSubject, Observable, of as observableOF } from 'rxjs';
+
+
+export class FileNode {
+  id: number;
+  child: FileNode[];
+  name: string;
+  status: any;
+}
+
 
 @Component({
   selector: 'app-home',
@@ -11,6 +23,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  nestedTreeControl: NestedTreeControl<FileNode>;
+  nestedDataSource: MatTreeNestedDataSource<FileNode>;
+  dataChange: BehaviorSubject<FileNode[]> = new BehaviorSubject<FileNode[]>([]);
+
+
   urlAttach = environment.apiUrl + 'addUp/';
   urlAdv = environment.apiUrl + 'add/';
   urlCat = environment.apiUrl + 'cat/';
@@ -23,8 +41,13 @@ export class HomeComponent implements OnInit {
   districs = [];
   selectedDis;
   cityArray = [];
+  fiterdCityArray = [];
+  filterText;
   selectedCity;
-
+  allCats = [];
+  innerWidth;
+  catnemu = false;
+  catHideButton = false;
 
   imageArray = [
     { title: 'Ela Kiri', url: 'https://www.designyourway.net/blog/wp-content/uploads/2018/02/4k-Game-Wallpaper-ultra-high-definition-game-wallpaper-1200x675.jpg' },
@@ -32,12 +55,46 @@ export class HomeComponent implements OnInit {
   ];
 
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth);
+    if (this.innerWidth < 575) {
+      this.catnemu = false;
+      this.catHideButton = false;
+    } else {
+      this.catnemu = true;
+    }
+  }
+
   constructor(
     private sanitizer: DomSanitizer,
     private apiCall: ApicallService,
     private http: HttpClient,
     private aRoute: ActivatedRoute
   ) {
+
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth);
+    if (this.innerWidth < 575) {
+      this.catnemu = false;
+    } else {
+      this.catnemu = true;
+    }
+
+    this.apiCall.call(this.urlCat + 'getAll', {}, data => {
+      this.allCats = data;
+
+      this.dataChange.next(this.allCats);
+
+      this.nestedDataSource = new MatTreeNestedDataSource();
+
+      this.nestedTreeControl = new NestedTreeControl<FileNode>(this._getChildren);
+
+      this.dataChange.subscribe(dataa => this.nestedDataSource.data = dataa);
+
+    });
+
 
     aRoute.params.subscribe(val => {
       this.isLoading = true;
@@ -48,7 +105,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  private _getChildren = (node: FileNode) => { return observableOF(node.child); };
+
+  hasNestedChild = (_: number, nodeData: FileNode) => { return (true); };
+
+
+
   ngOnInit() {
+
     this.getDistict();
     this.isLoading = true;
     this.id = this.aRoute.snapshot.paramMap.get('id');
@@ -56,6 +120,9 @@ export class HomeComponent implements OnInit {
     } else {
       this.getPendingList();
     }
+
+
+
 
   }
 
@@ -139,6 +206,7 @@ export class HomeComponent implements OnInit {
     this.selectedCity = null;
     this.apiCall.call(this.urlUser + 'getCitys', { id: this.selectedDis.iddistric }, data => {
       this.cityArray = data;
+      this.fiterdCityArray = data;
       console.log(this.cityArray);
       this.getSubCats();
     });
@@ -151,6 +219,37 @@ export class HomeComponent implements OnInit {
     this.getSubCats();
   }
 
+  filterItem(event) {
+
+    this.fiterdCityArray = this.cityArray;
+    if (!event) {
+      return;
+
+    }
+
+    this.fiterdCityArray = this.cityArray.filter(currentGoal => {
+      if (currentGoal.city_english && event) {
+        if (
+          currentGoal.city_english.toLowerCase().indexOf(event.toLowerCase()) > -1
+        ) {
+          return true;
+        }
+        return false;
+      }
+    });
+    // console.log(this.fiterdCityArray.length);
+    //  this.selectList.nativeElement.size = this.fiterdCityArray.length + 1;
+  }
+
+  viewCats() {
+    if (this.catnemu) {
+      this.catnemu = false;
+      this.catHideButton = false;
+    } else {
+      this.catnemu = true;
+      this.catHideButton = true;
+    }
+  }
 
 
 }

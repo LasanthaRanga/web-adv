@@ -104,6 +104,12 @@
 
                     </div>
 
+                    <div class="row">
+                        <mat-form-field class="col-md-12">
+                            <mat-label>Service Or Product Name : </mat-label>
+                            <input [(ngModel)]="viber" matInput type="text" />
+                        </mat-form-field>
+                    </div>
 
                     <div class="row">
                         <mat-form-field class="col-md-6">
@@ -134,27 +140,11 @@
                     <div class="row">
                         <mat-form-field class="col-md-12">
                             <mat-label>Description : </mat-label>
-                            <textarea rows="5" [(ngModel)]="des" matInput type="text" placeholder="Customer Name" ></textarea>
+                            <textarea rows="5" [(ngModel)]="des" matInput type="text"
+                                placeholder="Customer Name"></textarea>
                         </mat-form-field>
                     </div>
 
-                    <div class="row">
-                        <mat-form-field class="col-md-6">
-                            <mat-label>ව්‍යාපාරයේ නම : </mat-label>
-                            <input [(ngModel)]="companyS" matInput type="text" />
-                        </mat-form-field>
-                        <mat-form-field class="col-md-6">
-                            <mat-label>හිමිකරුගේ නම : </mat-label>
-                            <input [(ngModel)]="ownerS" matInput type="text" />
-                        </mat-form-field>
-                    </div>
-
-                    <div class="row">
-                        <mat-form-field class="col-md-12">
-                            <mat-label>විස්තරය : </mat-label>
-                            <textarea rows="5" [(ngModel)]="desS" matInput type="text" placeholder="Customer Name" ></textarea>
-                        </mat-form-field>
-                    </div>
 
                     <div class="row">
                         <mat-form-field class="col-md-4">
@@ -185,6 +175,28 @@
                             <input [(ngModel)]="web" matInput type="text" />
                         </mat-form-field>
                     </div>
+
+                    <hr>
+                    
+                    <div class="row">
+                        <mat-form-field class="col-md-6">
+                            <mat-label>ව්‍යාපාරයේ නම : </mat-label>
+                            <input [(ngModel)]="companyS" matInput type="text" />
+                        </mat-form-field>
+                        <mat-form-field class="col-md-6">
+                            <mat-label>හිමිකරුගේ නම : </mat-label>
+                            <input [(ngModel)]="ownerS" matInput type="text" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field class="col-md-12">
+                            <mat-label>විස්තරය : </mat-label>
+                            <textarea rows="5" [(ngModel)]="desS" matInput type="text"
+                                placeholder="Customer Name"></textarea>
+                        </mat-form-field>
+                    </div>
+
 
                     <div class="col-12">
                         <button mat-stroked-button color="primary" class="btn-block" (click)="saveData()">Save</button>

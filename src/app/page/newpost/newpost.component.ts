@@ -58,6 +58,7 @@ export class NewpostComponent implements OnInit {
   distric;
   city;
   category;
+  viber;
   company;
   owner;
   adl1;
@@ -273,6 +274,7 @@ export class NewpostComponent implements OnInit {
       lastSelected: this.lastSelected.id,
       distric: this.selectedUser,
       city: this.selectedcitys,
+      viber: this.viber,
       company: this.company,
       owner: this.owner,
       adl1: this.adl1,

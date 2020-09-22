@@ -17,7 +17,7 @@
 
         <mat-card class="col-md-6">
             <mat-card-header>
-                <mat-card-title>&nbsp; Contact Information 
+                <mat-card-title>&nbsp; Contact Information
                     &nbsp;&nbsp; <span class="material-icons">phone</span>
                     &nbsp;&nbsp;<span class="material-icons">phonelink_ring</span>
                     &nbsp;&nbsp;<span class="material-icons">mail</span></mat-card-title>
@@ -50,19 +50,20 @@
     <div class="row">
         <mat-card class="col-md-12">
             <mat-card-header>
-                <mat-card-title *ngIf="adv?.company_name!='undefined' ">{{adv?.company_name}}</mat-card-title>
+                <mat-card-title *ngIf="adv?.company_name!='undefined' ">{{adv?.con_viber}}</mat-card-title>
+                <mat-card-subtitle *ngIf="adv?.company_name!='undefined' ">{{adv?.company_name}}</mat-card-subtitle>
                 <mat-card-subtitle *ngIf="adv?.company_name_sinhala!='undefined' ">{{adv?.company_name_sinhala}}
                 </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-                <h5 *ngIf="adv?.name!='undefined' ">{{adv?.name}}</h5>
+                <h6 *ngIf="adv?.name!='undefined' ">{{adv?.name}}</h6>
                 <p *ngIf="adv?.description!='undefined' "><strong>Description :</strong> {{adv?.description}}</p>
                 <p *ngIf="adv?.description_sinhala!='undefined' "> {{adv?.description_sinhala}}</p>
 
             </mat-card-content>
         </mat-card>
     </div>
-    <br> 
+    <br>
 
     <div class="row" *ngIf="user?.utypeid==1">
         <mat-card class="col-md-12">

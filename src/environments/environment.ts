@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/',
-  // apiUrl: 'https://apiadv.codetechasia.com/',
+  // apiUrl: 'http://localhost:3000/',
+  apiUrl: 'https://apiadv.codetechasia.com/',
   // imagePath: 'http://adv.codetechasia.com/uploads/adv/'
 };
 

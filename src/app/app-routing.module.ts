@@ -12,6 +12,7 @@ import { UploadComponent } from './page/upload/upload.component';
 import { PendingComponent } from './page/pending/pending.component';
 import { SelectComponent } from './page/select/select.component';
 import { HomecatComponent } from './page/homecat/homecat.component';
+import { NavigationComponent } from './navigation/navigation.component';
 const routes: Routes = [
   { path: '', redirectTo: '/homecat', pathMatch: 'full' },
   { path: 'homecat', component: HomecatComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'upload/:id', component: UploadComponent },
   { path: 'pending', component: PendingComponent },
   { path: 'select/:id', component: SelectComponent },
+  { path: 'nav', component: NavigationComponent },
   { path: '**', component: HomeComponent },
 ];
 

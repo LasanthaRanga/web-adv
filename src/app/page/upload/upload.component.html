@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row ">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-12">
             <br><br>
             <mat-card>
                 <mat-card-header>
@@ -13,21 +13,23 @@
                     <button mat-raised-button (click)="fileInput.click()">
                         Select Image
                     </button>
+                    <br>
                     <input style="display: none;" type="file" (change)="fileChangeEvent($event)" #fileInput />
 
 
                     <br>
                     <!--  -->
                     <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
-                        [aspectRatio]="4 / 3" [resizeToWidth]="450"  format="png" (imageCropped)="imageCropped($event)"
+                        [aspectRatio]="4 / 3" [resizeToWidth]="450" format="png" (imageCropped)="imageCropped($event)"
                         (imageLoaded)="imageLoaded()" (loadImageFailed)="loadImageFailed()">
                     </image-cropper>
                     <br>
 
                     <button (click)="upload()" *ngIf="croppedImage  && !isLoading" mat-raised-button> UPLOAD </button>
 
-                    <div class="col-md-4 offset-md-4" *ngIf="isLoading">
-                        <mat-progress-spinner ng-show="isLoading" value='{{upProgrus}}'></mat-progress-spinner>
+                    <div class="col-md-12" *ngIf="isLoading">
+                        <mat-progress-bar ng-show="isLoading" mode="determinate" value="{{upProgrus}}">
+                        </mat-progress-bar>
                     </div>
 
 
@@ -37,22 +39,22 @@
 
             </mat-card>
 
-            <mat-card>
-                <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="5000" color="accent" maxWidth="100%"
-                    proportion="75" slides="1" [loop]="true" [hideArrows]="false" [hideIndicators]="false"
-                    [useKeyboard]="true" [useMouseWheel]="false" orientation="ltr">
-                    <mat-carousel-slide #matCarouselSlide *ngFor="let item of imageArray" overlayColor="#FAFAFA"
-                        [hideOverlay]="false">
-                        <img [src]="item" width="100%">
-                    </mat-carousel-slide>
-                </mat-carousel>
-            </mat-card>
 
+            <br>
+
+            <div class="row">
+                <mat-card *ngFor="let item of imageArray">
+                    <img [src]="item" style="width: 120px; height: 90px;">
+                </mat-card>
+            </div>
+
+            <br>
+            <button mat-raised-button color="primary" [routerLink]="['/home']"> Done </button>
         </div>
 
 
-       
+
 
     </div>
-    <button mat-raised-button color="primary" [routerLink]="['/home']"> Done </button>
+
 </div>
